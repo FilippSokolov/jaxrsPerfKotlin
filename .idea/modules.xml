@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyRESTapp.iml" filepath="$PROJECT_DIR$/MyRESTapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwaggerOkHttp.iml" filepath="$PROJECT_DIR$/SwaggerOkHttp.iml" />
     </modules>
   </component>
 </project>

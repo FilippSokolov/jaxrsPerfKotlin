@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="MyRESTapp:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/MyRESTapp_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="MyRESTapp/web/Web" />
+      <element id="javaee-facet-resources" facet="SwaggerOkHttp/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="MyRESTapp" />
+          <element id="module-output" name="SwaggerOkHttp" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="JAX-RS-2.1.1" />

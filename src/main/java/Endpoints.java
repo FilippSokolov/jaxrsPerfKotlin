@@ -22,7 +22,7 @@ public class Endpoints {
                 "<input type=\"submit\" />\n" +
                 "  </form>";
     }
-
+//
 //    @GET
 //    public String getMessageForm2() {
 //        return "<form action=\"helloOlga/sayHello\" method=\"GET\">\n" +
@@ -560,8 +560,8 @@ public class Endpoints {
 //    public String doSome1() {
 //        return null;
 //    }
-//
-//
+
+
 //
 //    /*@GET
 //    @Path(value="/{lastName}")....33

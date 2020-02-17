@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MyRESTapp" />
+        <module name="SwaggerOkHttp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="MyRESTapp" target="1.5" />
+      <module name="SwaggerOkHttp" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
