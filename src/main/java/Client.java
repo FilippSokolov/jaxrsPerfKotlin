@@ -17,6 +17,7 @@ public class Client extends Application {
     public void getEndpointTest1() throws MalformedURLException {
 
         HttpUrl aseUrl1 = HttpUrl.get("https://localhost:8080/");
+        UriBuilder.fromUri("http://localhost:8080/jaxrs_paths/");
     }
 
 
