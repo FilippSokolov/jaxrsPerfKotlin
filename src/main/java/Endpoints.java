@@ -3,6 +3,7 @@
 
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -40,268 +41,217 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
 
     }
 
-////    @GET
-////    @Produces("text/plain")
-////    public String getMessage2() {
-////        return "Hello2";
-////    }
+    @PATCH
+    @Produces("text/plain")
+    public String getMessage2() {
+        return "Hello2";
+    }
+
+
+    @DELETE
+    @Path(value = "/ext")
+    public String getMessage3() {
+        return "Hello3";
+    }
+
+
+    @GET
+    @Path(value = "/ext1")
+    @Produces("application/atom+xml")
+    public String say1() {
+        return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n" +
+
+                "<feed xmlns=\"http://www.w3.org/2005/Atom\">" + "\n" +
+
+                "<title>Example Feed</title>" + "\n" +
+                "<subtitle>A subtitle.</subtitle>" + "\n" +
+                "<link href=\"http://example.org/feed/\" rel=\"self\" />" + "\n" +
+                "<link href=\"http://example.org/\" />" + "\n" +
+                "<id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</id>" + "\n" +
+                "<updated>2003-12-13T18:30:02Z</updated>" + "\n" +
+
+                "<entry>" + "\n" +
+                "<title>Atom-Powered Robots Run Amok</title>" + "\n" +
+                "<link href=\"http://example.org/2003/12/13/atom03\" />" + "\n" +
+
+                "<content type=\"xhtml\">" + "\n" +
+                "<div xmlns=\"http://www.w3.org/1999/xhtml\">" + "\n" +
+                "<p>This is the entry content.</p>" + "\n" +
+                "</div>" + "\n" +
+                "</content>" + "\n" +
+                "<author>" + "\n" +
+                "<name>John Doe</name>" + "\n" +
+                "<email>johndoe@example.com</email>" + "\n" +
+                "</author>" + "\n" +
+
+                "</entry>" + "\n" +
+
+                "</feed>";
+    }
+
+    @GET
+    @Path(value = "/ext2")
+    @Produces({"image/jpeg,image/png"})
+    public String say2() {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello image/jpeg,image/png" + "</hello>";
+    }
+
+    //
+//
+    @GET
+    @Path(value = "/ext3")
+    @Produces("application/json")
+    public String say3() {
+        return "{" + "\n" +
+                "\"firstName\": \"json F\"," + "\n" +
+                "\"lastName\": \"json L\"," + "\n" +
+                "}";
+    }
+
+    public String say11() {
+        return null;
+    }
 //
 //
-//    @GET
-//    @Path(value = "/ext")
-//    public String getMessage3() {
-//        return "Hello3";
-//    }
+
 //
-//
-////====================================================================================//
-//    //GET
-////====================================================================================//
-//
-//    @GET
-//    @Path(value = "/ext1")
-//    @Produces("application/atom+xml")
-//    public String say1() {
-//        return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n" +
-//
-//                "<feed xmlns=\"http://www.w3.org/2005/Atom\">" + "\n" +
-//
-//                "<title>Example Feed</title>" + "\n" +
-//                "<subtitle>A subtitle.</subtitle>" + "\n" +
-//                "<link href=\"http://example.org/feed/\" rel=\"self\" />" + "\n" +
-//                "<link href=\"http://example.org/\" />" + "\n" +
-//                "<id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</id>" + "\n" +
-//                "<updated>2003-12-13T18:30:02Z</updated>" + "\n" +
-//
-//                "<entry>" + "\n" +
-//                "<title>Atom-Powered Robots Run Amok</title>" + "\n" +
-//                "<link href=\"http://example.org/2003/12/13/atom03\" />" + "\n" +
-//
-//                "<content type=\"xhtml\">" + "\n" +
-//                "<div xmlns=\"http://www.w3.org/1999/xhtml\">" + "\n" +
-//                "<p>This is the entry content.</p>" + "\n" +
-//                "</div>" + "\n" +
-//                "</content>" + "\n" +
-//                "<author>" + "\n" +
-//                "<name>John Doe</name>" + "\n" +
-//                "<email>johndoe@example.com</email>" + "\n" +
-//                "</author>" + "\n" +
-//
-//                "</entry>" + "\n" +
-//
-//                "</feed>";
-//    }
-//
-//    //// TODO: 23/09/2015
-//    @GET
-//    @Path(value = "/ext2")
-//    @Produces({"image/jpeg,image/png"})
-//    public String say2() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello image/jpeg,image/png" + "</hello>";
-//    }
-//
-//
-//    @GET
-//    @Path(value = "/ext3")
-//    @Produces("application/json")
-//    public String say3() {
-//        return "{" + "\n" +
-//                "\"firstName\": \"json F\"," + "\n" +
-//                "\"lastName\": \"json L\"," + "\n" +
-//                "}";
-//    }
-//
-//
-//    @GET
-//    @Path(value = "/ext4")
-//    @Produces("application/xml")
-//    public String say4() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello xml" + "</hello>";
-//    }
-//
-//
-//    @GET
-//    @Path(value = "/ext5")
-//    @Produces("text/html")
-//    public String say5() {
-//        return "<html> " + "<title>" + "Hello HTML title" + "</title>" + "<body><h1>" + "Hello HTML" + "</body></h1>" + "</html> ";
-//    }
-//
-//
-//    @GET
-//    @Path(value = "/ext6")
-//    @Produces("text/plain")
-//    public String say6() {
-//        return "tra la la";
-//    }
+
+    //
+    @GET
+    @Path(value = "/ext6")
+    @Produces("text/plain")
+    public String say6() {
+        return "tra la la";
+    }
+
+    //
+    @GET
+    @Path(value = "/ext7")
+    @Produces("*/*")
+    public String say7() {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
+    }
+
+    //
 //
 //    /*
-//    Any format
-//     */
-//    @GET
-//    @Path(value = "/ext7")
-//    @Produces("*/*")
-//    public String say7() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
-//    }
+//   Any format
+//    */
+    @GET
+    @Path(value = "/ext8")
+    @Produces(MediaType.TEXT_XML)
+    public String say8() {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
+    }
+
 //
 //
 //    /*
 //   Any format
 //    */
-//    @GET
-//    @Path(value = "/ext8")
-//    @Produces(MediaType.TEXT_XML)
-//    public String say8() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
-//    }
+
+    //
 //
-//    /*
-//   Any format
-//    */
-//    @GET
-//    @Path(value = "/ext9")
-//    @Produces(MediaType.TEXT_HTML)
-//    public String say9() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
-//    }
+    @GET
+    @Produces({MediaType.APPLICATION_XML})
+    @Path("/ext11")
+    public String say10() {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
+    }
 //
 //
-//    /*
-//   Any format
-//    */
-//    @GET
-//    @Path(value = "/ext10")
-//    @Produces(MediaType.TEXT_XML)
-//    public String say10() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
-//    }
+    @Path("sayHello/{name}")
+    @POST
+    public String doSayHello(@PathParam("name") String name) {
+        return "Hello there " + name;
+    }
 //
+    @Path("sayHello/{age}")
+    @DELETE
+    public String doSayAge(@PathParam("age") String name) {
+        return "Hello there " + name;
+    }
 //
-//    @GET
-//    @Produces({MediaType.APPLICATION_XML})
-//    @Path("/ext11")
-//    public String say11() {
-//        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
-//    }
+
+
 //
-//
-//    @Path("sayHello/{name}")
-//    @GET
-//    public String doSayHello(@PathParam("name") String name) {
-//        return "Hello there " + name;
-//    }
-//
-//    @Path("sayHello/{age}")
-//    @GET
-//    public String doSayAge(@PathParam("age") String name) {
-//        return "Hello there " + name;
-//    }
-//
-//    @Path("sayHello{name}")
-//    @GET
-//    public String doSayHello2(@PathParam("name") String name) {
-//        return "Hello there " + name;
-//    }
-//
-////====================================================================================//
-//    //GET
-////====================================================================================//
-//
-//
-//    @Path("sayHello1")
-//    @POST
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public String doSayHelloWithFormParam(@FormParam("name1") String name) {
-//        return "Hi there1 " + name;
-//    }
-//
-//    @POST
-//    @Path(value = "/ext12")
-//    @Produces("application/json")
-//    public String say12() {
-//        return "{" + "\n" +
-//                "\"firstName\": \"json F111\"," + "\n" +
-//                "\"lastName\": \"json L111\"," + "\n" +
-//                "}";
-//    }
+    @Path("sayHello1")
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public String doSayHelloWithFormParam(@FormParam("name1") String name) {
+        return "Hi there1 " + name;
+    }
+
+    @POST
+    @Path(value = "/ext12")
+    @Produces("application/json")
+    public String say12() {
+        return "{" + "\n" +
+                "\"firstName\": \"json F111\"," + "\n" +
+                "\"lastName\": \"json L111\"," + "\n" +
+                "}";
+    }
 //
 //
 //    //===========================
 //    // MyTest
 //    //===========================
 //
-//    @GET
-//    @Path("sayHello/{name}" + "/some" + "/{value}")
-//    public String getTest1() {
-//        return "Hello3";
-//    }
+    @GET
+    @Path("sayHello/{name}" + "/some" + "/{value}")
+    public String getTest1() {
+        return "Hello3";
+    }
 //
-//    @GET
-//    @Path("VVVVV/{name}" + "/some" + "/{value}")
-//    public String getTest133() {
-//        return "Hello3";
-//    }
+
 //
-//    @GET
-//    @Path("sayHe23llo/{name}" + "/some" + "/{value}")
-//    public String getTest122() {
-//        return "Hello3";
-//    }
+
 //
-//    @GET
-//    @Path("sayHello/{name}" + "/some")
-//    public String getTest12() {
-//        return "Hello3";
-//    }
+
 //
-//    @GET
-//    @Path("sayHello/some" + "some")
-//    public String getTest13() {
-//        return "Hello3";
-//    }
+    @PUT
+    @Path("sayHello/some" + "some")
+    public String getTest13() {
+        return "Hello3";
+    }
+
+    @DELETE
+    @Path("users/{username: [a-zA-Z][a-zA-Z_0-9]}")
+    public String getTest4() {
+        return "Hello3";
+    }
+
+    @POST
+    @Path("us[a-zA-Z][a-zA-Z_0-9]ers/{username: [a-zA-Z][a-zA-Z_0-9]}")
+    public String getTest5() {
+        return "Hello3";
+    }
 //
-//    @GET
-//    @Path("users/{username: [a-zA-Z][a-zA-Z_0-9]}")
-//    public String getTest4() {
-//        return "Hello3";
-//    }
+
 //
-//    @GET
-//    @Path("us[a-zA-Z][a-zA-Z_0-9]ers/{username: [a-zA-Z][a-zA-Z_0-9]}")
-//    public String getTest5() {
-//        return "Hello3";
-//    }
-//
-////    @GET
-////    @Path("sayHello/somesome")
-////    public String getTest14() {
-////        return "Hello3";
-////    }
-//
-//    @PermitAll
-//    @POST
-//    @Path("/TEST")
-//    @Consumes("application/json")
-//    @Produces("application/json")
-//    public Response insert(User user) {
-//
-//        ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
-//        builder.expires(new Date());
-//
-//        try {
-//
-//            Long idUser = (long) UserDao.getInstance().insertU(user);
-//            user.setId(idUser);
-//            builder.status(Response.Status.OK).entity(user);
-//
-//        } catch (SQLException e) {
-//
-//            builder.status(Response.Status.INTERNAL_SERVER_ERROR);
-//        }
-//
-//        return builder.build();
-//    }
+    @PermitAll
+    @POST
+    @Path("/TEST")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response insert(User user) {
+
+        ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+        builder.expires(new Date());
+
+        try {
+
+            Long idUser = (long) UserDao.getInstance().insertU(user);
+            user.setId(idUser);
+            builder.status(Response.Status.OK).entity(user);
+
+        } catch (SQLException e) {
+
+            builder.status(Response.Status.INTERNAL_SERVER_ERROR);
+        }
+
+        return builder.build();
+    }
 //
 //
 //    ////////////////////

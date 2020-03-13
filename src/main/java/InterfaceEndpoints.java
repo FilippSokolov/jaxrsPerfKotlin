@@ -1,9 +1,7 @@
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path(value = "/helloInterface")
@@ -17,4 +15,21 @@ public interface InterfaceEndpoints {
     @POST
     public Response createApplianceSoftwareVersion(@Context HttpHeaders headers,
                                                    @PathParam("applianceId") Long applianceId);
+
+    @GET
+    @Path(value = "/ext5")
+    @Produces("text/html")
+    public String say3();
+
+
+        @GET
+    @Produces({MediaType.APPLICATION_XML})
+    @Path("/ext11")
+    public String say11();
+
+    @GET
+    @Path("sayHe23llo/{name}" + "/some" + "/{value}")
+    public String getTest122();
+
+
 }
