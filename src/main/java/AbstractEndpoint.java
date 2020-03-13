@@ -1,8 +1,17 @@
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path(value = "/helloAbstract")
 public abstract class AbstractEndpoint {
+
+    @PermitAll
+    @POST
+    @Path("/TEST")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public abstract Response insert(Object user);
 
     @GET
     public String getMessageForm() {
