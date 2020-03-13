@@ -1,6 +1,9 @@
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
 
 @Path(value = "/helloAbstract")
@@ -13,12 +16,44 @@ public abstract class AbstractEndpoint {
     @Produces("application/json")
     public abstract Response insert(Object user);
 
+    @POST
+    @Consumes("application/json")
+    public void submit(final @Suspended AsyncResponse response) {
+    }
+
+    @GET
+    @Path("/matrix/{make}/{model}/{year}")
+    @Produces("text/plain")
+    public String getFromMatrixParam(
+            @PathParam("make") String make,
+            @PathParam("model") PathSegment car,
+            @MatrixParam("color") String color,
+            @PathParam("year") String year) {
+        return "A " + color + " " + year + " "
+                + make + " " + car.getPath();
+    }
+
     @GET
     public String getMessageForm() {
         return "<form action=\"helloOlga/sayHello\" method=\"GET\">\n" +
                 " Name <input id=\"name\" name=\"name\"/> " +
                 "<input type=\"submit\" />\n" +
                 "  </form>";
+    }
+
+    @GET
+    public Response get() {
+
+
+        Response.ResponseBuilder builder = Response.ok("hello", "text/plain");
+        return builder.build();
+    }
+
+    @GET
+    @Produces("application/xml")
+    public Response getCustomerList() {
+
+        return Response.ok().build();
     }
 
     @PATCH
@@ -54,13 +89,6 @@ public abstract class AbstractEndpoint {
     @Produces("text/plain")
     abstract public String say3();
 
-    @GET
-    @Path(value = "/ext9")
-    @Produces(MediaType.TEXT_HTML)
-    public String say9() {
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
-    }
-
     @POST
     @Path(value = "/ext11")
     @Produces(MediaType.TEXT_XML)
@@ -71,6 +99,5 @@ public abstract class AbstractEndpoint {
     public String doSayHello2(@PathParam("name") String name) {
         return "Hello there " + name;
     }
-
 
 }

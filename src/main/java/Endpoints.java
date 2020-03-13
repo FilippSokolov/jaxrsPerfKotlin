@@ -43,18 +43,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
     public String getTest1() {
         return "Hello3";
     }
-//
-
-//
-
-//
-
-    //
-    @PUT
-    @Path("sayHello/some" + "some")
-    public String getTest13() {
-        return "Hello3";
-    }
 
     @DELETE
     @Path("users/{username: [a-zA-Z][a-zA-Z_0-9]}")
@@ -67,23 +55,7 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
     public String getTest5() {
         return "Hello3";
     }
-//
 
-//
-
-//
-//
-//    ////////////////////
-//
-//
-
-    //
-/////////////////////////////////////
-//
-
-
-    /////////////////////////////
-//
     @GET
     @Path("{machine}")
     @Produces({APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -91,13 +63,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return Response.ok().build();
     }
 
-    //
-//
-//    /////////////////////////////////
-//
-//    /**
-//     * When a client has a chunk, it registers as a seeder
-//     */
     @Path("registerclientseeder")
     @PUT
     @Produces(MediaType.TEXT_PLAIN)
@@ -119,24 +84,13 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         // runUpdate(query);
         return null;
     }
-//
 
-    //
-//    //////////////////////////
-////    @Path("/{applianceId}/versions")
-////    @POST
-////
-//
     @PUT
     @Path("/folder_format/{path: .*}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void test() {
     }
-
-    //
-//
-//    //////////////////////
 
 
     @Path(COUNTRY_SELECTED_STATE)
@@ -146,17 +100,7 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
 
         return Response.ok().build();
     }
-//
-//
-//    ///////////////////
-//
-//
 
-    //
-//
-////////////////////
-//
-//
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("unsubscribe")
@@ -165,11 +109,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return Response.accepted();
     }
 
-    //
-//
-//////////////////////////////////////
-//
-//
     @POST
     @Path("fi.le/{file}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -182,15 +121,25 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return say2();
     }
 
-    //
     @Path("AbstractRoot")
     @GET
     public String doSome1() {
         return null;
     }
 
+    @GET
+    @Path("/restfuljava")
+    @Produces("text/plain")
+    public Response getBook() {
 
-    //
+        String book = "...";
+        Response.ResponseBuilder builder = Response.ok(book);
+        builder.language("fr")
+                .header("Some-Header", "some value");
+
+        return builder.build();
+    }
+
     @POST
     @Path(value = "/{lastName}")
     @Produces(value = "text/xml")
@@ -229,20 +178,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return "Hi there " + name;
 
     }
-
-    @PATCH
-    @Produces("text/plain")
-    public String getMessage2() {
-        return "Hello2";
-    }
-
-
-    @DELETE
-    @Path(value = "/ext")
-    public String getMessage3() {
-        return "Hello3";
-    }
-
 
     @GET
     @Path(value = "/ext1")
@@ -285,8 +220,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return "<?xml version=\"1.0\"?>" + "<hello> Hello image/jpeg,image/png" + "</hello>";
     }
 
-    //
-//
     @GET
     @Path(value = "/ext3")
     @Produces("application/json")
@@ -300,20 +233,7 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
     public String say11() {
         return null;
     }
-//
-//
 
-//
-
-    //
-    @GET
-    @Path(value = "/ext6")
-    @Produces("text/plain")
-    public String say6() {
-        return "tra la la";
-    }
-
-    //
     @GET
     @Path(value = "/ext7")
     @Produces("*/*")
@@ -321,11 +241,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
     }
 
-    //
-//
-//    /*
-//   Any format
-//    */
     @GET
     @Path(value = "/ext8")
     @Produces(MediaType.TEXT_XML)
@@ -333,14 +248,6 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
     }
 
-//
-//
-//    /*
-//   Any format
-//    */
-
-    //
-//
     @GET
     @Produces({MediaType.APPLICATION_XML})
     @Path("/ext11")
@@ -348,24 +255,18 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
         return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
     }
 
-    //
-//
     @Path("sayHello/{name}")
     @POST
     public String doSayHello(@PathParam("name") String name) {
         return "Hello there " + name;
     }
 
-    //
     @Path("sayHello/{age}")
     @DELETE
     public String doSayAge(@PathParam("age") String name) {
         return "Hello there " + name;
     }
-//
 
-
-    //
     @Path("sayHello1")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
@@ -382,6 +283,4 @@ public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
                 "\"lastName\": \"json L111\"," + "\n" +
                 "}";
     }
-
-
 }

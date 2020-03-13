@@ -1,23 +1,26 @@
 
 
 
-import okhttp3.HttpUrl;
-
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
 @ApplicationPath("/")
-public class Client extends Application { 
+public class Client extends Application {
     public void getEndpointTest1() throws MalformedURLException {
-        HttpUrl aseUrl1 = HttpUrl.get("https://localhost:8080/");
-        //HttpUrl testUrl1 = HttpUrl.parse("http://localhost:8080/hello/");
-        System.out.println("sdf");
-        //    HttpUrl baseUrl1 = HttpUrl.get("");
-        new URL("");
-        //Request request1 = new Request.Builder().url(aseUrl1 + "http://localhost:8080")
+
+        javax.ws.rs.client.Client client = ClientBuilder.newClient();
+        String name = client.target("http://localhost/helloExtended/ext8/versions")
+                .request(MediaType.TEXT_PLAIN)
+                .get(String.class);
     }
 
 
