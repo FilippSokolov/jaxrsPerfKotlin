@@ -4,6 +4,7 @@
 import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
@@ -12,8 +13,8 @@ import java.util.List;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
-@Path(value = "/hello")
-public class Endpoints {
+@Path(value = "/helloClass")
+public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
 
     @GET
     public String getMessageForm() {
@@ -22,29 +23,23 @@ public class Endpoints {
                 "<input type=\"submit\" />\n" +
                 "  </form>";
     }
-//
-//    @GET
-//    public String getMessageForm2() {
-//        return "<form action=\"helloOlga/sayHello\" method=\"GET\">\n" +
-//                " Name <input id=\"name\" name=\"name\"/> " +
-//                "<input type=\"submit\" />\n" +
-//                "  </form>";
-//    }
-//
-//    @Path("sayHello")
-//    @GET
-//    public String doSayHelloWithRequestParam(@QueryParam("name") List<String> name) {
-//        return "Hi there " + name;
-//
-//    }
-//
-//
-//    @GET
-//    @Path(value = "helloValue")
-//    public String getMessage1() {
-//        return "Hello1";
-//    }
-//
+
+    public String interfaceDo() {
+        return null;
+    }
+
+    @POST
+    public Response createApplianceSoftwareVersion(HttpHeaders headers, Long applianceId) {
+        return (Response) new Object();
+    }
+
+    @Path("sayHello")
+    @GET
+    public String doSayHelloWithRequestParam(@QueryParam("name") List<String> name) {
+        return "Hi there " + name;
+
+    }
+
 ////    @GET
 ////    @Produces("text/plain")
 ////    public String getMessage2() {

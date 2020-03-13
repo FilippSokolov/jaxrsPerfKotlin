@@ -1,13 +1,21 @@
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-public abstract class AbstractEndpoint extends ExtendedEndpoints{
+@Path(value = "/helloAbstract")
+public abstract class AbstractEndpoint {
+
+    @GET
+    public String getMessageForm() {
+        return "<form action=\"helloOlga/sayHello\" method=\"GET\">\n" +
+                " Name <input id=\"name\" name=\"name\"/> " +
+                "<input type=\"submit\" />\n" +
+                "  </form>";
+    }
 
 
-//    @Override
-//    @GET
-//    @Path(value = "helloValue")
-//    public String getMessage1() {
-//        return super.getMessage1();
-//    }
+    @GET
+    @Path(value = "helloValue")
+    abstract public String getMessage1();
+
+
 }
