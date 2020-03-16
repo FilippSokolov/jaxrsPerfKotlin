@@ -1,111 +1,84 @@
-import javax.ws.rs.Path;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import java.io.InputStream;
-import java.util.List;
+import javax.ws.rs.Path
 
 @Path("/helloExtended")
-public class EndpointsExtended extends Endpoints {
-
-    @Override
-    public String say1() {
-        return super.say1();
+class EndpointsExtended : Endpoints(), Cloneable {
+    override fun say1(): String? {
+        return super.say1()
     }
 
-    @Override
-    public String say2() {
-        return super.say2();
+    override fun say2(): String {
+        return super.say2()
     }
 
-    @Override
-    public String say3() {
-        return super.say3();
+    override fun say3(): String? {
+        return super.say3()
     }
 
-    @Override
-    public String say11() {
-        return super.say11();
+    override fun say11(): String? {
+        return super.say11()
     }
 
-
-    @Override
-    public String say7() {
-        return super.say7();
+    override fun say7(): String? {
+        return super.say7()
     }
 
-    @Override
-    public String say8() {
-        return super.say8();
+    override fun say8(): String? {
+        return super.say8()
     }
 
-    @Override
-    public String say10() {
-        return super.say10();
+    override fun say10(): String? {
+        return super.say10()
     }
 
-    @Override
-    public String doSayHello(String name) {
-        return super.doSayHello(name);
+    override fun doSayHello(name: String): String? {
+        return super.doSayHello(name)
     }
 
-    @Override
-    public String doSayAge(String name) {
-        return super.doSayAge(name);
+    override fun doSayAge(name: String): String? {
+        return super.doSayAge(name)
     }
 
-    @Override
-    public String doSayHelloWithFormParam(String name) {
-        return super.doSayHelloWithFormParam(name);
+    override fun doSayHelloWithFormParam(name: String): String? {
+        return super.doSayHelloWithFormParam(name)
     }
 
-    @Override
-    public String say12() {
-        return super.say12();
+    override fun say12(): String? {
+        return super.say12()
     }
 
-    @Override
-    public String getTest133() {
-        return super.getTest133();
+    override val test133: String?
+        get() = super.test133
+
+    override val test122: String
+        get() = super.test122!!
+
+    override fun say4(): String? {
+        return super.say4()
     }
 
-    @Override
-    public String getTest122() {
-        return super.getTest122();
+    override fun doSayHello2(name: String): String? {
+        return super.doSayHello2(name)
     }
 
-    @Override
-    public String say4() {
-        return super.say4();
+    override fun hashCode(): Int {
+        return super.hashCode()
     }
 
-
-    @Override
-    public String doSayHello2(String name) {
-        return super.doSayHello2(name);
+    override fun equals(obj: Any?): Boolean {
+        return super.equals(obj)
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+    @Throws(CloneNotSupportedException::class)
+    override fun clone(): Any {
+        return super.clone()
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    override fun toString(): String {
+        return super.toString()
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    @Throws(Throwable::class)
+    protected fun finalize() {
+        super.test()
     }
 }

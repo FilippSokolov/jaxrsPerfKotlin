@@ -1,286 +1,264 @@
-
-
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.io.InputStream;
-import java.util.List;
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import java.io.InputStream
+import javax.ws.rs.*
+import javax.ws.rs.core.Context
+import javax.ws.rs.core.HttpHeaders
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
 
 @Path(value = "/helloClass")
-public class Endpoints extends AbstractEndpoint implements InterfaceEndpoints {
-
-    static public final String COUNTRY_SELECTED_STATE = "CONSTANT";
-    static public String temp1 = "Variable";
-
+open class Endpoints : AbstractEndpoint(), InterfaceEndpoints {
     @PUT
     @Path("/{id}")
-    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-    @Produces({MediaType.APPLICATION_XML, APPLICATION_JSON})
-    public Response updateDeliverableType(@Context String request, @Context HttpHeaders header,
-                                          @BeanParam String input, @PathParam("id") long id) {
-        return null;
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON)
+    fun updateDeliverableType(@Context request: String?, @Context header: HttpHeaders?,
+                              @BeanParam input: String?, @PathParam("id") id: Long): Response? {
+        return null
     }
 
-    public Response insert(Object user) {
-        return null;
+    override fun insert(user: Any?): Response? {
+        return null
     }
 
-    @GET
-    public String getMessageForm() {
-        return "<form action=\"helloOlga/sayHello\" method=\"GET\">\n" +
-                " Name <input id=\"name\" name=\"name\"/> " +
-                "<input type=\"submit\" />\n" +
-                "  </form>";
-    }
+    @get:GET
+    override val messageForm: String
+        get() = """<form action="helloOlga/sayHello" method="GET">
+ Name <input id="name" name="name"/> <input type="submit" />
+  </form>"""
 
-    @GET
-    @Path("sayHello/{name}" + "/some" + "/{value}")
-    public String getTest1() {
-        return "Hello3";
-    }
+    @get:Path("sayHello/{name}" + "/some" + "/{value}")
+    @get:GET
+    val test1: String
+        get() = "Hello3"
 
-    @DELETE
-    @Path("users/{username: [a-zA-Z][a-zA-Z_0-9]}")
-    public String getTest4() {
-        return "Hello3";
-    }
+    @get:Path("users/{username: [a-zA-Z][a-zA-Z_0-9]}")
+    @get:DELETE
+    val test4: String
+        get() = "Hello3"
 
-    @POST
-    @Path("us[a-zA-Z][a-zA-Z_0-9]ers/{username: [a-zA-Z][a-zA-Z_0-9]}")
-    public String getTest5() {
-        return "Hello3";
-    }
+    @get:Path("us[a-zA-Z][a-zA-Z_0-9]ers/{username: [a-zA-Z][a-zA-Z_0-9]}")
+    @get:POST
+    val test5: String
+        get() = "Hello3"
 
     @GET
     @Path("{machine}")
-    @Produces({APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response getMachineMetric(@PathParam("machine") String machine) {
-        return Response.ok().build();
+    @Produces(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML)
+    fun getMachineMetric(@PathParam("machine") machine: String?): Response {
+        return Response.ok().build()
     }
 
     @Path("registerclientseeder")
     @PUT
     @Produces(MediaType.TEXT_PLAIN)
-    public String registerClientSeeder(@QueryParam("file_hash") String file_hash,
-                                       @QueryParam("chunk_hash") String chunk_hash,
-                                       @QueryParam("chunk_id") String chunk_id,
-                                       @QueryParam("ip") String ip,
-                                       @QueryParam("port") String port) {
-
-        String query = "INSERT INTO chunk_owners(file_hash, chunk_hash, chunk_id, "
+    fun registerClientSeeder(@QueryParam("file_hash") file_hash: String?,
+                             @QueryParam("chunk_hash") chunk_hash: String?,
+                             @QueryParam("chunk_id") chunk_id: String?,
+                             @QueryParam("ip") ip: String?,
+                             @QueryParam("port") port: String?): String? {
+        val query = ("INSERT INTO chunk_owners(file_hash, chunk_hash, chunk_id, "
                 + "owner_ip, owner_port, is_seeder)"
-
-                + "VALUES('%s', '%s', %s, '%s', %s, 'f');".format(file_hash,
+                + String.format(file_hash!!,
                 chunk_hash,
                 chunk_id,
                 ip,
-                port);
+                port))
 
         // runUpdate(query);
-        return null;
+        return null
     }
 
     @PUT
     @Path("/folder_format/{path: .*}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void test() {
+    fun test() {
     }
-
 
     @Path(COUNTRY_SELECTED_STATE)
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createStateInCountrySelectingState(String testSessionDto) {
-
-        return Response.ok().build();
+    fun createStateInCountrySelectingState(testSessionDto: String?): Response {
+        return Response.ok().build()
     }
 
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("unsubscribe")
-    public Response.ResponseBuilder unsubscribe(InputStream input) {
-
-        return Response.accepted();
+    fun unsubscribe(input: InputStream?): Response.ResponseBuilder {
+        return Response.accepted()
     }
 
     @POST
     @Path("fi.le/{file}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String setConnectorFileByURL(
-            String url,
-            @PathParam("file") String file,
-            @QueryParam("scope") String scope,
-            @QueryParam("nodeId") List<String> nodeId) {
-
-        return say2();
+    fun setConnectorFileByURL(
+            url: String?,
+            @PathParam("file") file: String?,
+            @QueryParam("scope") scope: String?,
+            @QueryParam("nodeId") nodeId: List<String?>?): String {
+        return say2()
     }
 
     @Path("AbstractRoot")
     @GET
-    public String doSome1() {
-        return null;
+    fun doSome1(): String? {
+        return null
     }
 
-    @GET
-    @Path("/restfuljava")
-    @Produces("text/plain")
-    public Response getBook() {
-
-        String book = "...";
-        Response.ResponseBuilder builder = Response.ok(book);
-        builder.language("fr")
-                .header("Some-Header", "some value");
-
-        return builder.build();
-    }
+    @get:Produces("text/plain")
+    @get:Path("/restfuljava")
+    @get:GET
+    val book: Response
+        get() {
+            val book = "..."
+            val builder = Response.ok(book)
+            builder.language("fr")
+                    .header("Some-Header", "some value")
+            return builder.build()
+        }
 
     @POST
     @Path(value = "/{lastName}")
-    @Produces(value = "text/xml")
-    public void getByLastName(@PathParam(value = "lastName") String lastName) {
-
+    @Produces(value = ["text/xml"])
+    fun getByLastName(@PathParam(value = "lastName") lastName: String?) {
     }
 
-    public String getTest12() {
-        return null;
+    override val test12: String?
+        get() = null
+
+    override val message1: String?
+        get() = null
+
+    @Throws(Exception::class)
+    override fun run(`object`: String?): Any? {
+        return null
     }
 
-    public String getMessage1() {
-        return null;
+    override fun createStateInCountrySelectingState2(testSessionDto: String?): Response? {
+        return null
     }
 
-    public Object run(String object) throws Exception {
-        return null;
-    }
-
-    public Response createStateInCountrySelectingState2(String testSessionDto) {
-        return null;
-    }
-
-    public String interfaceDo() {
-        return null;
+    override fun interfaceDo(): String? {
+        return null
     }
 
     @POST
-    public Response createApplianceSoftwareVersion(HttpHeaders headers, Long applianceId) {
-        return (Response) new Object();
+    override fun createApplianceSoftwareVersion(headers: HttpHeaders?, applianceId: Long?): Response? {
+        return Any() as Response
     }
 
     @Path("sayHello")
     @GET
-    public String doSayHelloWithRequestParam(@QueryParam("name") List<String> name) {
-        return "Hi there " + name;
-
+    fun doSayHelloWithRequestParam(@QueryParam("name") name: List<String?>): String {
+        return "Hi there $name"
     }
 
     @GET
     @Path(value = "/ext1")
     @Produces("application/atom+xml")
-    public String say1() {
-        return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n" +
-
-                "<feed xmlns=\"http://www.w3.org/2005/Atom\">" + "\n" +
-
-                "<title>Example Feed</title>" + "\n" +
-                "<subtitle>A subtitle.</subtitle>" + "\n" +
-                "<link href=\"http://example.org/feed/\" rel=\"self\" />" + "\n" +
-                "<link href=\"http://example.org/\" />" + "\n" +
-                "<id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</id>" + "\n" +
-                "<updated>2003-12-13T18:30:02Z</updated>" + "\n" +
-
-                "<entry>" + "\n" +
-                "<title>Atom-Powered Robots Run Amok</title>" + "\n" +
-                "<link href=\"http://example.org/2003/12/13/atom03\" />" + "\n" +
-
-                "<content type=\"xhtml\">" + "\n" +
-                "<div xmlns=\"http://www.w3.org/1999/xhtml\">" + "\n" +
-                "<p>This is the entry content.</p>" + "\n" +
-                "</div>" + "\n" +
-                "</content>" + "\n" +
-                "<author>" + "\n" +
-                "<name>John Doe</name>" + "\n" +
-                "<email>johndoe@example.com</email>" + "\n" +
-                "</author>" + "\n" +
-
-                "</entry>" + "\n" +
-
-                "</feed>";
+    open fun say1(): String? {
+        return """<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Example Feed</title>
+<subtitle>A subtitle.</subtitle>
+<link href="http://example.org/feed/" rel="self" />
+<link href="http://example.org/" />
+<id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</id>
+<updated>2003-12-13T18:30:02Z</updated>
+<entry>
+<title>Atom-Powered Robots Run Amok</title>
+<link href="http://example.org/2003/12/13/atom03" />
+<content type="xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml">
+<p>This is the entry content.</p>
+</div>
+</content>
+<author>
+<name>John Doe</name>
+<email>johndoe@example.com</email>
+</author>
+</entry>
+</feed>"""
     }
 
     @GET
     @Path(value = "/ext2")
-    @Produces({"image/jpeg,image/png"})
-    public String say2() {
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello image/jpeg,image/png" + "</hello>";
+    @Produces("image/jpeg,image/png")
+    open fun say2(): String {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello image/jpeg,image/png" + "</hello>"
     }
 
     @GET
     @Path(value = "/ext3")
     @Produces("application/json")
-    public String say3() {
-        return "{" + "\n" +
-                "\"firstName\": \"json F\"," + "\n" +
-                "\"lastName\": \"json L\"," + "\n" +
-                "}";
+    override fun say3(): String? {
+        return """
+            {
+            "firstName": "json F",
+            "lastName": "json L",
+            }
+            """.trimIndent()
     }
 
-    public String say11() {
-        return null;
+    override fun say11(): String? {
+        return null
     }
 
     @GET
     @Path(value = "/ext7")
     @Produces("*/*")
-    public String say7() {
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
+    open fun say7(): String? {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>"
     }
 
     @GET
     @Path(value = "/ext8")
     @Produces(MediaType.TEXT_XML)
-    public String say8() {
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
+    open fun say8(): String? {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>"
     }
 
     @GET
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_XML)
     @Path("/ext11")
-    public String say10() {
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>";
+    override fun say10(): String? {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello *" + "</hello>"
     }
 
     @Path("sayHello/{name}")
     @POST
-    public String doSayHello(@PathParam("name") String name) {
-        return "Hello there " + name;
+    open fun doSayHello(@PathParam("name") name: String): String? {
+        return "Hello there $name"
     }
 
     @Path("sayHello/{age}")
     @DELETE
-    public String doSayAge(@PathParam("age") String name) {
-        return "Hello there " + name;
+    open fun doSayAge(@PathParam("age") name: String): String? {
+        return "Hello there $name"
     }
 
     @Path("sayHello1")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public String doSayHelloWithFormParam(@FormParam("name1") String name) {
-        return "Hi there1 " + name;
+    open fun doSayHelloWithFormParam(@FormParam("name1") name: String): String? {
+        return "Hi there1 $name"
     }
 
     @POST
     @Path(value = "/ext12")
     @Produces("application/json")
-    public String say12() {
-        return "{" + "\n" +
-                "\"firstName\": \"json F111\"," + "\n" +
-                "\"lastName\": \"json L111\"," + "\n" +
-                "}";
+    open fun say12(): String? {
+        return """
+            {
+            "firstName": "json F111",
+            "lastName": "json L111",
+            }
+            """.trimIndent()
+    }
+
+    companion object {
+        const val COUNTRY_SELECTED_STATE = "CONSTANT"
+        var temp1 = "Variable"
     }
 }

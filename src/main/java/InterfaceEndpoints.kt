@@ -1,50 +1,43 @@
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-
+import javax.ws.rs.*
+import javax.ws.rs.core.Context
+import javax.ws.rs.core.HttpHeaders
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
 
 @Path(value = "/helloInterface")
-public interface InterfaceEndpoints {
-
+interface InterfaceEndpoints {
     @GET
     @Path("run")
-    @Produces(APPLICATION_JSON)
-    @Consumes(APPLICATION_JSON)
-    public Object run(@QueryParam("tipVersion") String object) throws Exception;
-
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Throws(Exception::class)
+    fun run(@QueryParam("tipVersion") `object`: String?): Any?
 
     @Path(Endpoints.COUNTRY_SELECTED_STATE)
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createStateInCountrySelectingState2(String testSessionDto);
+    fun createStateInCountrySelectingState2(testSessionDto: String?): Response?
 
     @Path("InterfaceRoot")
     @GET
-    public String interfaceDo();
+    fun interfaceDo(): String?
 
     @Path("/{applianceId}/versions")
     @POST
-    public Response createApplianceSoftwareVersion(@Context HttpHeaders headers,
-                                                   @PathParam("applianceId") Long applianceId);
+    fun createApplianceSoftwareVersion(@Context headers: HttpHeaders?,
+                                       @PathParam("applianceId") applianceId: Long?): Response?
 
     @GET
     @Path(value = "/ext5")
     @Produces("text/html")
-    public String say3();
-
+    fun say3(): String?
 
     @GET
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces(MediaType.APPLICATION_XML)
     @Path("/ext11")
-    public String say11();
+    fun say11(): String?
 
-    @GET
-    @Path("sayHe23llo/{name}" + "/some" + "/{value}")
-    public String getTest122();
-
-
+    @get:Path("sayHe23llo/{name}" + "/some" + "/{value}")
+    @get:GET
+    val test122: String?
 }

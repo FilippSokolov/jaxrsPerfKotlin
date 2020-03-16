@@ -1,103 +1,92 @@
-import javax.annotation.security.PermitAll;
-import javax.ws.rs.*;
-import javax.ws.rs.container.AsyncResponse;
-import javax.ws.rs.container.Suspended;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.PathSegment;
-import javax.ws.rs.core.Response;
+import javax.annotation.security.PermitAll
+import javax.ws.rs.*
+import javax.ws.rs.container.AsyncResponse
+import javax.ws.rs.container.Suspended
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.PathSegment
+import javax.ws.rs.core.Response
 
 @Path(value = "/helloAbstract")
-public abstract class AbstractEndpoint {
-
+abstract class AbstractEndpoint {
     @PermitAll
     @POST
     @Path("/TEST")
     @Consumes("application/json")
     @Produces("application/json")
-    public abstract Response insert(Object user);
+    abstract fun insert(user: Any?): Response?
 
     @POST
     @Consumes("application/json")
-    public void submit(final @Suspended AsyncResponse response) {
+    fun submit(@Suspended response: AsyncResponse?) {
     }
 
     @GET
     @Path("/matrix/{make}/{model}/{year}")
     @Produces("text/plain")
-    public String getFromMatrixParam(
-            @PathParam("make") String make,
-            @PathParam("model") PathSegment car,
-            @MatrixParam("color") String color,
-            @PathParam("year") String year) {
-        return "A " + color + " " + year + " "
-                + make + " " + car.getPath();
+    fun getFromMatrixParam(
+            @PathParam("make") make: String,
+            @PathParam("model") car: PathSegment,
+            @MatrixParam("color") color: String,
+            @PathParam("year") year: String): String {
+        return ("A " + color + " " + year + " "
+                + make + " " + car.path)
     }
+
+    @get:GET
+    open val messageForm: String?
+        get() = """<form action="helloOlga/sayHello" method="GET">
+ Name <input id="name" name="name"/> <input type="submit" />
+  </form>"""
 
     @GET
-    public String getMessageForm() {
-        return "<form action=\"helloOlga/sayHello\" method=\"GET\">\n" +
-                " Name <input id=\"name\" name=\"name\"/> " +
-                "<input type=\"submit\" />\n" +
-                "  </form>";
+    fun get(): Response {
+        val builder = Response.ok("hello", "text/plain")
+        return builder.build()
     }
 
-    @GET
-    public Response get() {
+    @get:Produces("application/xml")
+    @get:GET
+    val customerList: Response
+        get() = Response.ok().build()
 
+    @get:Path("VVVVV/{name}" + "/some" + "/{value}")
+    @get:PATCH
+    open val test133: String?
+        get() = "Hello3"
 
-        Response.ResponseBuilder builder = Response.ok("hello", "text/plain");
-        return builder.build();
-    }
+    @get:Path("sayHe23llo/{name}" + "/some" + "/{value}")
+    @get:GET
+    open val test122: String?
+        get() = "Hello3"
 
-    @GET
-    @Produces("application/xml")
-    public Response getCustomerList() {
+    @get:Path("sayHello/{name}" + "/some")
+    @get:PUT
+    abstract val test12: String?
 
-        return Response.ok().build();
-    }
-
-    @PATCH
-    @Path("VVVVV/{name}" + "/some" + "/{value}")
-    public String getTest133() {
-        return "Hello3";
-    }
-
-    @GET
-    @Path("sayHe23llo/{name}" + "/some" + "/{value}")
-    public String getTest122() {
-        return "Hello3";
-    }
-
-    @PUT
-    @Path("sayHello/{name}" + "/some")
-    abstract public String getTest12();
-
-    @GET
-    @Path(value = "helloValue")
-    abstract public String getMessage1();
+    @get:Path(value = "helloValue")
+    @get:GET
+    abstract val message1: String?
 
     @PUT
     @Path(value = "/ext4")
     @Produces("application/xml")
-    public String say4() {
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello xml" + "</hello>";
-
+    open fun say4(): String? {
+        return "<?xml version=\"1.0\"?>" + "<hello> Hello xml" + "</hello>"
     }
 
     @GET
     @Path(value = "/ext3")
     @Produces("text/plain")
-    abstract public String say3();
+    abstract fun say3(): String?
 
     @POST
     @Path(value = "/ext11")
     @Produces(MediaType.TEXT_XML)
-    public abstract String say10();
+    abstract fun say10(): String?
 
     @Path("sayHello{name}")
     @GET
-    public String doSayHello2(@PathParam("name") String name) {
-        return "Hello there " + name;
+    open fun doSayHello2(@PathParam("name") name: String): String? {
+        return "Hello there $name"
     }
-
 }
